@@ -1,0 +1,169 @@
+{
+  "name": "vscode-agent-budget-monitor",
+  "displayName": "Agent Budget Monitor",
+  "description": "Show remaining AI agent budget for Codex, Claude Code, and GitHub Copilot inside VS Code.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:agentBudgetMonitor.refresh",
+    "onCommand:agentBudgetMonitor.showOverview",
+    "onCommand:agentBudgetMonitor.addAgent",
+    "onCommand:agentBudgetMonitor.removeAgent",
+    "onCommand:agentBudgetMonitor.manageAgents"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "icons": {
+      "agent-budget-copilot": {
+        "description": "GitHub Copilot icon for Agent Budget Monitor",
+        "default": {
+          "fontPath": "./assets/icon-font/agent-budget-statusbar-icons.woff",
+          "fontCharacter": "\\F101"
+        }
+      },
+      "agent-budget-codex": {
+        "description": "Codex icon for Agent Budget Monitor",
+        "default": {
+          "fontPath": "./assets/icon-font/agent-budget-statusbar-icons.woff",
+          "fontCharacter": "\\F102"
+        }
+      },
+      "agent-budget-claude": {
+        "description": "Claude icon for Agent Budget Monitor",
+        "default": {
+          "fontPath": "./assets/icon-font/agent-budget-statusbar-icons.woff",
+          "fontCharacter": "\\F103"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "agentBudgetMonitor.refresh",
+        "title": "Agent Budget Monitor: Refresh"
+      },
+      {
+        "command": "agentBudgetMonitor.showOverview",
+        "title": "Agent Budget Monitor: Show Overview"
+      },
+      {
+        "command": "agentBudgetMonitor.addAgent",
+        "title": "Agent Budget Monitor: Add Agent"
+      },
+      {
+        "command": "agentBudgetMonitor.removeAgent",
+        "title": "Agent Budget Monitor: Remove Agent"
+      },
+      {
+        "command": "agentBudgetMonitor.manageAgents",
+        "title": "Agent Budget Monitor: Manage Agents"
+      }
+    ],
+    "configuration": {
+      "title": "Agent Budget Monitor",
+      "properties": {
+        "agentBudgetMonitor.refreshIntervalSeconds": {
+          "type": "number",
+          "default": 30,
+          "minimum": 5,
+          "maximum": 3600,
+          "description": "How often provider data is refreshed."
+        },
+        "agentBudgetMonitor.warningThresholdPercent": {
+          "type": "number",
+          "default": 70,
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percent used at which a provider enters warning state."
+        },
+        "agentBudgetMonitor.criticalThresholdPercent": {
+          "type": "number",
+          "default": 90,
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percent used at which a provider enters critical state."
+        },
+        "agentBudgetMonitor.debug.useMockData": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use built-in mock datasets instead of live provider data for UI preview and debugging."
+        },
+        "agentBudgetMonitor.debug.dataset": {
+          "type": "string",
+          "default": "mixed",
+          "enum": [
+            "balanced",
+            "mixed",
+            "edge"
+          ],
+          "description": "Select which built-in mock dataset to render when debug.useMockData is enabled."
+        },
+        "agentBudgetMonitor.providers.codex.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the Codex adapter after it has been registered."
+        },
+        "agentBudgetMonitor.providers.claude.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the Claude adapter after it has been registered."
+        },
+        "agentBudgetMonitor.providers.copilot.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the Copilot adapter after it has been registered."
+        },
+        "agentBudgetMonitor.providers.codex.sessionRoot": {
+          "type": "string",
+          "default": "~/.codex/sessions",
+          "description": "Root directory for Codex session files."
+        },
+        "agentBudgetMonitor.providers.claude.transcriptRoots": {
+          "type": "array",
+          "default": [
+            "~/.claude/transcripts",
+            "~/.claude/projects",
+            "~/.config/claude/projects"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Directories to scan for Claude local data."
+        },
+        "agentBudgetMonitor.providers.claude.plan": {
+          "type": "string",
+          "default": "max5",
+          "enum": [
+            "pro",
+            "max5",
+            "max20",
+            "custom"
+          ],
+          "description": "Claude plan used to convert local usage into a percent."
+        },
+        "agentBudgetMonitor.providers.claude.customTokenLimit": {
+          "type": "number",
+          "default": 44000,
+          "minimum": 1,
+          "description": "Custom token limit used when Claude plan is set to custom."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/vscode": "^1.96.0",
+    "typescript": "^5.8.3"
+  }
+}
