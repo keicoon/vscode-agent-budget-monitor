@@ -488,6 +488,10 @@ function renderStatusTooltipSection(state: ProviderState): string {
   const used = percentages.used;
   const left = percentages.left;
   const ring = getTooltipRingGlyph(used, left);
+  const summary = state.detailLines[0];
+  const nextAction = state.status === "unknown" || state.status === "error" || state.status === "stale"
+    ? state.detailLines[1]
+    : undefined;
   const headline = left !== undefined
     ? `${formatTooltipPercent(left)}% left`
     : used !== undefined
@@ -513,7 +517,9 @@ function renderStatusTooltipSection(state: ProviderState): string {
     `${ring} \`${escapeMarkdown(headline)}\` · \`${escapeMarkdown(state.status)}\``,
     metrics || `${ring} \`no percentage data\``,
     meta,
-  ].filter((value) => value.length > 0).join("  \n");
+    summary ? `note \`${escapeMarkdown(summary)}\`` : undefined,
+    nextAction ? `next \`${escapeMarkdown(nextAction)}\`` : undefined,
+  ].filter((value): value is string => Boolean(value && value.length > 0)).join("  \n");
 }
 
 function getTooltipPercentages(state: ProviderState): { used?: number; left?: number } {

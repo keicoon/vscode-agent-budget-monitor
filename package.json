@@ -160,9 +160,13 @@
   "scripts": {
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "icons:build": "node ./scripts/build-icon-font.mjs"
+    "icons:build": "node ./scripts/build-icon-font.mjs",
+    "test": "rm -rf ./.test-dist && tsc -p ./tsconfig.test.json && node --test ./.test-dist/test/*.test.js",
+    "vscode:prepublish": "npm run test && npm run compile",
+    "package:vsix": "vsce package --allow-missing-repository"
   },
   "devDependencies": {
+    "@vscode/vsce": "^3.6.0",
     "@types/node": "^22.15.3",
     "@types/vscode": "^1.96.0",
     "fantasticon": "^4.1.0",

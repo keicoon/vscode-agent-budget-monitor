@@ -1,0 +1,10 @@
+.gitignore
+.vscode/**
+.serena/**
+.test-dist/**
+docs/**
+scripts/**
+src/**
+test/**
+tsconfig*.json
+assets/icon-font-src/**

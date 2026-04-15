@@ -20,8 +20,8 @@ This makes different quota systems readable without pretending they are identica
 
 This folder currently contains product-definition documents for the MVP:
 
-- [MVP spec](./docs/mvp-spec.md)
-- [Provider adapter plan](./docs/provider-adapters.md)
+- `docs/mvp-spec.md`
+- `docs/provider-adapters.md`
 
 It also includes a working extension scaffold:
 
@@ -95,6 +95,23 @@ To add a new agent icon later:
 - add a monochrome SVG to `assets/icon-font-src`
 - run `npm run icons:build`
 - wire the new icon id into extension UI code such as `statusBarIconId(...)`
+
+## Development
+
+Core local checks:
+
+```bash
+npm run compile
+npm test
+```
+
+Package a local VSIX:
+
+```bash
+npm run package:vsix
+```
+
+`vscode:prepublish` runs tests and compile before packaging.
 
 ## Out of Scope for v1
 

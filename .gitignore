@@ -1,5 +1,6 @@
 dist/
 node_modules/
 *.vsix
+.test-dist/
 .DS_Store
 .serena/
