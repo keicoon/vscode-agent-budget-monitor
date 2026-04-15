@@ -80,6 +80,22 @@ Available datasets:
 
 Mock mode bypasses the empty registry and renders provider cards directly from built-in raw fixtures shaped like the expected Codex, Claude, and Copilot source payloads.
 
+## Icon Font Workflow
+
+Status bar provider icons are generated from `assets/icon-font-src/*.svg`.
+
+```bash
+npm run icons:build
+```
+
+This rebuilds `assets/icon-font/agent-budget-statusbar-icons.woff` and syncs `package.json` `contributes.icons` entries from the generated codepoints.
+
+To add a new agent icon later:
+
+- add a monochrome SVG to `assets/icon-font-src`
+- run `npm run icons:build`
+- wire the new icon id into extension UI code such as `statusBarIconId(...)`
+
 ## Out of Scope for v1
 
 - Team analytics

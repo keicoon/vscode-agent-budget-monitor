@@ -22,11 +22,11 @@
   "main": "./dist/extension.js",
   "contributes": {
     "icons": {
-      "agent-budget-copilot": {
-        "description": "GitHub Copilot icon for Agent Budget Monitor",
+      "agent-budget-claude": {
+        "description": "Claude icon for Agent Budget Monitor",
         "default": {
           "fontPath": "./assets/icon-font/agent-budget-statusbar-icons.woff",
-          "fontCharacter": "\\F101"
+          "fontCharacter": "\\F103"
         }
       },
       "agent-budget-codex": {
@@ -36,11 +36,11 @@
           "fontCharacter": "\\F102"
         }
       },
-      "agent-budget-claude": {
-        "description": "Claude icon for Agent Budget Monitor",
+      "agent-budget-copilot": {
+        "description": "GitHub Copilot icon for Agent Budget Monitor",
         "default": {
           "fontPath": "./assets/icon-font/agent-budget-statusbar-icons.woff",
-          "fontCharacter": "\\F103"
+          "fontCharacter": "\\F101"
         }
       }
     },
@@ -92,7 +92,7 @@
         },
         "agentBudgetMonitor.debug.useMockData": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Use built-in mock datasets instead of live provider data for UI preview and debugging."
         },
         "agentBudgetMonitor.debug.dataset": {
@@ -159,11 +159,13 @@
   },
   "scripts": {
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "icons:build": "node ./scripts/build-icon-font.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
     "@types/vscode": "^1.96.0",
+    "fantasticon": "^4.1.0",
     "typescript": "^5.8.3"
   }
 }
