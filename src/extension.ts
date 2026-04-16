@@ -648,13 +648,13 @@ class OverviewPanelController implements vscode.Disposable {
 function getOverviewIconUris(webview: vscode.Webview, extensionUri: vscode.Uri): OverviewIconUris {
   return {
     codex: webview.asWebviewUri(
-      vscode.Uri.joinPath(extensionUri, "assets", "icons", "provider-codex.svg"),
+      vscode.Uri.joinPath(extensionUri, "assets", "icons", "codex-openai-blossom.svg"),
     ).toString(),
     claude: webview.asWebviewUri(
-      vscode.Uri.joinPath(extensionUri, "assets", "icons", "provider-claude.svg"),
+      vscode.Uri.joinPath(extensionUri, "assets", "icons", "anthropic.svg"),
     ).toString(),
     copilot: webview.asWebviewUri(
-      vscode.Uri.joinPath(extensionUri, "assets", "icons", "provider-copilot.svg"),
+      vscode.Uri.joinPath(extensionUri, "assets", "icons", "github-copilot.svg"),
     ).toString(),
   };
 }

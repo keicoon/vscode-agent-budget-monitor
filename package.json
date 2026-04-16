@@ -3,8 +3,8 @@
   "displayName": "Agent Budget Monitor",
   "description": "Show remaining AI agent budget for Codex, Claude Code, and GitHub Copilot inside VS Code.",
   "version": "0.0.1",
-  "publisher": "local",
-  "license": "UNLICENSED",
+  "publisher": "keicoon",
+  "license": "MIT",
   "icon": "icon.png",
   "repository": {
     "type": "git",
