@@ -2,6 +2,8 @@
 
 VS Code extension concept for showing "how much budget is left" across AI coding agents in one place.
 
+Independent project. Not affiliated with, endorsed by, or sponsored by OpenAI, Anthropic, or GitHub. Provider names are used only to identify integrations and compatible local data sources.
+
 ## Product Direction
 
 The product does not try to force Codex, Claude Code, and GitHub Copilot into one official billing model.
